@@ -1,0 +1,22 @@
+Gerados pelo Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Editores
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+.DS_Store
+
+# Android
+/android/app/debug
+/android/app/profile
+/android/app/release
