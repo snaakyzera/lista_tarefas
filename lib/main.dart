@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'pages/home_page.dart';
 
-// Ponto de partida do app.
 void main() => runApp(const MeuApp());
 
 class MeuApp extends StatelessWidget {
