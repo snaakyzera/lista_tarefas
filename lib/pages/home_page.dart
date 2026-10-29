@@ -14,7 +14,6 @@ class _HomePageState extends State<HomePage> {
   final TarefaDao _dao = TarefaDao();
   final TextEditingController _tituloController = TextEditingController();
 
-  // Guarda a consulta ao banco que o FutureBuilder acompanha.
   late Future<List<TarefaModel>> _futureTarefas;
 
   @override
@@ -29,7 +28,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  // Faz uma nova consulta e redesenha a tela.
   void _atualizarLista() {
     if (!mounted) return;
     setState(() {
@@ -37,7 +35,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  // [2] Inserção usando o texto do TextField.
   Future<void> _salvarTarefa() async {
     final texto = _tituloController.text.trim();
     if (texto.isEmpty) {
@@ -51,13 +48,13 @@ class _HomePageState extends State<HomePage> {
     _atualizarLista();
   }
 
-  // [4] Update: marca ou desmarca como concluída.
+
   Future<void> _alternar(TarefaModel tarefa) async {
     await _dao.alternarConcluida(tarefa);
     _atualizarLista();
   }
 
-  // [4] Delete: pergunta antes de apagar.
+
   Future<void> _confirmarExclusao(TarefaModel tarefa) async {
     final confirmou = await showDialog<bool>(
       context: context,
@@ -95,7 +92,6 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Column(
           children: [
-            // [3] Listagem com FutureBuilder
             Expanded(
               child: FutureBuilder<List<TarefaModel>>(
                 future: _futureTarefas,
@@ -105,7 +101,6 @@ class _HomePageState extends State<HomePage> {
                       child: Text('Não foi possível ler o banco: ${snapshot.error}'),
                     );
                   }
-                  // Sem dados ainda: primeira leitura em andamento.
                   if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());
                   }
@@ -170,7 +165,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            // [2] Campo de texto embaixo + botão de adicionar
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
               child: Row(
@@ -208,7 +202,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// Mensagem mostrada quando ainda não existe nenhuma tarefa.
 class _ListaVazia extends StatelessWidget {
   const _ListaVazia();
 
